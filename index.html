@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deutsch B1 · Lernplattform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6F2E9; --paper-2:#EFEADC; --card:#FBF9F3;
+  --ink:#1C1B18; --ink-soft:#57534B; --ink-faint:#8B8578;
+  --blue:#164A5B; --blue-deep:#0E323E; --blue-tint:#DCE6E7;
+  --ochre:#E0A72E; --ochre-deep:#B7811A;
+  --green:#3E7A4E; --amber:#C08A24; --rust:#B5482F;
+  --line:#DBD3C2; --line-soft:#E7E0D0;
+  --shadow:0 1px 2px rgba(28,27,24,.05), 0 8px 24px rgba(28,27,24,.06);
+  --r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:'Archivo',system-ui,sans-serif;
+  background:var(--paper); color:var(--ink);
+  line-height:1.5; -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+.mono{font-family:'IBM Plex Mono',monospace}
+.serif{font-family:'Newsreader',Georgia,serif}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+:focus-visible{outline:2.5px solid var(--blue);outline-offset:2px;border-radius:4px}
+
+/* ---------- Shell ---------- */
+.app{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.side{
+  background:var(--blue-deep);color:#EAE6DA;
+  padding:26px 20px;display:flex;flex-direction:column;gap:22px;
+  position:sticky;top:0;height:100vh;
+}
+.brand{display:flex;align-items:baseline;gap:8px;letter-spacing:-.02em}
+.brand b{font-weight:800;font-size:22px;color:#fff}
+.brand span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ochre);font-weight:600}
+
+.ring-wrap{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:var(--r);padding:14px}
+.ring{position:relative;width:66px;height:66px;flex:none}
+.ring svg{transform:rotate(-90deg)}
+.ring .pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono';font-size:15px;font-weight:500;color:#fff}
+.ring-wrap .lbl{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre);font-weight:600}
+.ring-wrap .sub{font-size:12.5px;color:#C7C1B2;margin-top:2px}
+
+.nav{display:flex;flex-direction:column;gap:3px}
+.nav button{
+  display:flex;align-items:center;gap:12px;width:100%;text-align:left;
+  padding:11px 12px;border-radius:10px;color:#CFC9BB;font-size:14.5px;font-weight:500;
+  transition:background .14s,color .14s;
+}
+.nav button .ic{width:20px;text-align:center;font-size:15px;opacity:.85}
+.nav button:hover{background:rgba(255,255,255,.06);color:#fff}
+.nav button.on{background:var(--ochre);color:var(--blue-deep);font-weight:600}
+.nav button.on .ic{opacity:1}
+
+.side-foot{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+.stat-row{display:flex;gap:8px}
+.stat{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:9px 10px}
+.stat .n{font-family:'IBM Plex Mono';font-size:18px;color:#fff;line-height:1}
+.stat .k{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#A49E8F;margin-top:5px}
+.side-foot .mini{display:flex;gap:8px}
+.side-foot .mini button{flex:1;font-size:11px;color:#B7B1A2;padding:7px;border:1px solid rgba(255,255,255,.12);border-radius:8px;transition:.14s}
+.side-foot .mini button:hover{color:#fff;border-color:rgba(255,255,255,.3)}
+
+/* ---------- Main ---------- */
+.main{padding:34px 40px 80px;max-width:1000px}
+.view{display:none;animation:rise .35s ease}
+.view.on{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.eyebrow{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:9px}
+h1{font-size:32px;font-weight:800;letter-spacing:-.03em;line-height:1.05}
+h2{font-size:21px;font-weight:700;letter-spacing:-.02em}
+.lead{color:var(--ink-soft);font-size:15.5px;margin-top:8px;max-width:60ch}
+
+.grid{display:grid;gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+
+/* Dashboard */
+.dash-top{grid-template-columns:1.5fr 1fr;margin:26px 0}
+.plan h3{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:700}
+.plan .task{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--line-soft)}
+.plan .task:last-child{border-bottom:none;padding-bottom:0}
+.plan .task .badge{width:42px;height:42px;border-radius:11px;background:var(--blue-tint);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:19px;flex:none}
+.plan .task .t-main{flex:1}
+.plan .task .t-main b{font-size:15px;font-weight:600;display:block}
+.plan .task .t-main small{color:var(--ink-soft);font-size:13px}
+.plan .task .go{font-size:13px;font-weight:600;color:var(--blue);padding:8px 14px;border:1.5px solid var(--blue);border-radius:9px;transition:.15s;white-space:nowrap}
+.plan .task .go:hover{background:var(--blue);color:#fff}
+
+.streak-card{display:flex;flex-direction:column;gap:16px}
+.flame{font-size:40px;line-height:1}
+.streak-card .big{font-family:'IBM Plex Mono';font-size:34px;font-weight:500;letter-spacing:-.02em}
+.streak-card .cap{color:var(--ink-soft);font-size:13.5px}
+.xpbar{height:9px;background:var(--paper-2);border-radius:5px;overflow:hidden;margin-top:4px}
+.xpbar i{display:block;height:100%;background:linear-gradient(90deg,var(--ochre),var(--ochre-deep));border-radius:5px;transition:width .5s}
+
+/* Weakness bars */
+.weak-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px}
+.wbar{margin-bottom:15px}
+.wbar:last-child{margin-bottom:0}
+.wbar .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.wbar .top b{font-size:14.5px;font-weight:600}
+.wbar .top .tag{font-family:'IBM Plex Mono';font-size:12px;color:var(--ink-faint)}
+.track{height:10px;background:var(--paper-2);border-radius:6px;overflow:hidden}
+.track i{display:block;height:100%;border-radius:6px;transition:width .6s}
+.s-weak i{background:var(--rust)} .s-dev i{background:var(--amber)} .s-strong i{background:var(--green)}
+.s-new i{background:var(--line)}
+.chip{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:3px 8px;border-radius:20px}
+.c-weak{background:#F6E1DB;color:var(--rust)} .c-dev{background:#F5E7CB;color:var(--amber)}
+.c-strong{background:#DCEBE0;color:var(--green)} .c-new{background:var(--paper-2);color:var(--ink-faint)}
+
+/* Practice / question engine */
+.q-shell{max-width:680px}
+.q-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.q-topic{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);font-weight:700}
+.q-count{font-family:'IBM Plex Mono';font-size:13px;color:var(--ink-faint)}
+.progress{height:6px;background:var(--paper-2);border-radius:4px;overflow:hidden;margin-bottom:24px}
+.progress i{display:block;height:100%;background:var(--blue);transition:width .4s}
+.q-prompt{font-size:22px;font-weight:500;line-height:1.35;letter-spacing:-.01em}
+.q-prompt .blank{color:var(--blue);font-weight:700;border-bottom:2.5px dotted var(--blue);padding:0 4px}
+.q-gloss{color:var(--ink-faint);font-size:14.5px;font-style:italic;margin-top:8px;font-family:'Newsreader'}
+
+.opts{display:grid;gap:11px;margin:26px 0}
+.opt{display:flex;align-items:center;gap:13px;padding:15px 18px;background:var(--card);border:1.5px solid var(--line);border-radius:12px;font-size:16px;font-weight:500;text-align:left;transition:.13s}
+.opt:hover:not(:disabled){border-color:var(--blue);background:var(--blue-tint)}
+.opt .key{font-family:'IBM Plex Mono';font-size:12.5px;color:var(--ink-faint);border:1.5px solid var(--line);border-radius:6px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex:none}
+.opt.correct{border-color:var(--green);background:#E4F0E7}
+.opt.correct .key{border-color:var(--green);color:var(--green)}
+.opt.wrong{border-color:var(--rust);background:#F7E3DD}
+.opt.wrong .key{border-color:var(--rust);color:var(--rust)}
+.opt:disabled{cursor:default}
+
+.fill-in{display:flex;gap:10px;margin:26px 0}
+.fill-in input{flex:1;padding:15px 18px;font-family:'Archivo';font-size:17px;background:var(--card);border:1.5px solid var(--line);border-radius:12px;color:var(--ink)}
+.fill-in input:focus{outline:none;border-color:var(--blue)}
+.fill-in button{padding:0 26px;background:var(--blue);color:#fff;border-radius:12px;font-weight:600;font-size:15px}
+
+.hintbox{background:var(--blue-tint);border:1px solid #BcD3D6;border-left:4px solid var(--blue);border-radius:10px;padding:14px 16px;margin:16px 0;font-size:14.5px;animation:rise .25s}
+.hintbox b{color:var(--blue-deep)}
+.hintbox .de{font-family:'Newsreader';font-size:15.5px}
+.feedback{border-radius:12px;padding:16px 18px;margin:18px 0;animation:rise .25s}
+.feedback.ok{background:#E4F0E7;border:1px solid #B9D6C1}
+.feedback.no{background:#F7E3DD;border:1px solid #E3BCB0}
+.feedback .fh{font-weight:700;font-size:15px;margin-bottom:5px;display:flex;align-items:center;gap:8px}
+.feedback.ok .fh{color:var(--green)} .feedback.no .fh{color:var(--rust)}
+.feedback .fx{font-size:14.5px;color:var(--ink-soft)}
+.feedback .fx .serif{font-size:15.5px}
+
+.q-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{padding:12px 22px;border-radius:11px;font-weight:600;font-size:14.5px;transition:.15s}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:var(--blue-deep)}
+.btn-ghost{border:1.5px solid var(--line);color:var(--ink-soft)}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+.btn-ochre{background:var(--ochre);color:var(--blue-deep)}
+.btn-ochre:hover{background:var(--ochre-deep);color:#fff}
+
+/* Mode picker */
+.modes{grid-template-columns:repeat(2,1fr);margin-top:24px}
+.mode{display:flex;flex-direction:column;gap:8px;text-align:left;padding:22px;background:var(--card);border:1.5px solid var(--line);border-radius:var(--r);transition:.15s;position:relative;overflow:hidden}
+.mode:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:var(--shadow)}
+.mode .mi{font-size:26px}
+.mode b{font-size:17px;font-weight:700}
+.mode small{color:var(--ink-soft);font-size:13.5px;line-height:1.45}
+.mode .n{position:absolute;top:16px;right:18px;font-family:'IBM Plex Mono';font-size:12px;color:var(--ink-faint)}
+
+/* Vocab card */
+.flash{max-width:520px;margin:24px auto 0;text-align:center}
+.flash .card{padding:44px 30px;cursor:pointer;user-select:none;min-height:230px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.flash .word{font-size:30px;font-weight:700;letter-spacing:-.02em}
+.flash .art{color:var(--blue);font-weight:600}
+.flash .flip-hint{font-size:12px;color:var(--ink-faint);letter-spacing:.1em;text-transform:uppercase;margin-top:14px}
+.flash .mean{font-family:'Newsreader';font-size:24px}
+.flash .ex{font-family:'Newsreader';font-style:italic;color:var(--ink-soft);font-size:16px;margin-top:6px}
+.flash-actions{display:flex;gap:10px;justify-content:center;margin-top:20px}
+.flash-actions button{flex:1;max-width:180px;padding:14px;border-radius:12px;font-weight:600;font-size:15px}
+.f-again{background:#F7E3DD;color:var(--rust);border:1.5px solid #E3BCB0}
+.f-good{background:#E4F0E7;color:var(--green);border:1.5px solid #B9D6C1}
+
+/* Reading */
+.passage{font-family:'Newsreader';font-size:18px;line-height:1.7;color:#2A2823}
+.passage p{margin-bottom:14px}
+.reading-title{font-family:'Archivo';font-weight:800;font-size:22px;margin-bottom:4px;letter-spacing:-.02em}
+
+/* Writing */
+.prompt-list{display:flex;flex-direction:column;gap:12px;margin-top:22px}
+.wprompt{text-align:left;padding:18px 20px;background:var(--card);border:1.5px solid var(--line);border-radius:12px;display:flex;justify-content:space-between;gap:16px;align-items:center;transition:.14s}
+.wprompt:hover{border-color:var(--blue)}
+.wprompt b{font-size:16px;font-weight:600}
+.wprompt small{color:var(--ink-soft);font-size:13.5px;display:block;margin-top:3px}
+.wprompt .kind{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--blue);white-space:nowrap}
+.checklist{list-style:none;margin:14px 0}
+.checklist li{display:flex;gap:10px;padding:7px 0;font-size:14.5px;align-items:flex-start}
+.checklist li::before{content:'▢';color:var(--blue);font-size:15px}
+.writing-area{width:100%;min-height:220px;padding:18px;font-family:'Newsreader';font-size:17px;line-height:1.6;border:1.5px solid var(--line);border-radius:12px;background:var(--card);resize:vertical;color:var(--ink)}
+.writing-area:focus{outline:none;border-color:var(--blue)}
+.wcount{font-family:'IBM Plex Mono';font-size:12.5px;color:var(--ink-faint);text-align:right;margin-top:6px}
+.model{background:var(--paper-2);border-radius:12px;padding:18px;font-family:'Newsreader';font-size:16px;line-height:1.65;margin-top:14px;white-space:pre-wrap}
+
+/* Exam */
+.exam-intro{max-width:560px}
+.exam-facts{display:flex;gap:12px;margin:24px 0;flex-wrap:wrap}
+.fact{flex:1;min-width:120px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.fact .n{font-family:'IBM Plex Mono';font-size:24px;color:var(--blue)}
+.fact .k{font-size:12px;color:var(--ink-soft);margin-top:4px}
+.timer{position:fixed;top:22px;right:34px;background:var(--blue-deep);color:#fff;font-family:'IBM Plex Mono';font-size:15px;padding:9px 16px;border-radius:30px;box-shadow:var(--shadow);z-index:20;display:none}
+.timer.on{display:block}
+.timer.warn{background:var(--rust)}
+.result-score{font-family:'IBM Plex Mono';font-size:64px;font-weight:500;letter-spacing:-.03em;line-height:1}
+.result-band{display:inline-block;padding:6px 16px;border-radius:30px;font-weight:700;font-size:14px;margin-top:12px}
+.rev-item{border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px;background:var(--card)}
+.rev-item .rq{font-weight:500;font-size:15.5px;margin-bottom:8px}
+.rev-line{font-size:14px;display:flex;gap:8px;align-items:baseline;margin-top:4px}
+.rev-line .yours.bad{color:var(--rust);text-decoration:line-through}
+.rev-line .right{color:var(--green);font-weight:600}
+
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--blue-deep);color:#fff;padding:13px 22px;border-radius:30px;font-weight:600;font-size:14.5px;box-shadow:var(--shadow);z-index:50;transition:transform .3s;display:flex;gap:9px;align-items:center}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+.empty{text-align:center;padding:50px 20px;color:var(--ink-soft)}
+.empty .em{font-size:40px;margin-bottom:12px}
+
+/* mobile top bar */
+.topbar{display:none}
+@media(max-width:840px){
+  .app{grid-template-columns:1fr}
+  .side{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;padding:16px;gap:14px}
+  .side .ring-wrap{order:3;width:100%}
+  .side-foot{order:5;width:100%;margin-top:0}
+  .nav{order:4;flex-direction:row;flex-wrap:wrap;width:100%;gap:6px}
+  .nav button{width:auto;padding:9px 12px;font-size:13px}
+  .nav button .ic{display:none}
+  .brand{order:1}
+  .main{padding:24px 20px 70px}
+  .dash-top,.modes{grid-template-columns:1fr}
+  h1{font-size:26px}
+  .q-prompt{font-size:19px}
+  .timer{top:auto;bottom:22px;right:20px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- SIDEBAR -->
+  <aside class="side">
+    <div class="brand"><b>Deutsch</b><span>B1 · Lernstand</span></div>
+    <div class="ring-wrap">
+      <div class="ring">
+        <svg width="66" height="66" viewBox="0 0 66 66">
+          <circle cx="33" cy="33" r="28" fill="none" stroke="rgba(255,255,255,.13)" stroke-width="6"/>
+          <circle id="ringArc" cx="33" cy="33" r="28" fill="none" stroke="var(--ochre)" stroke-width="6" stroke-linecap="round" stroke-dasharray="176" stroke-dashoffset="176"/>
+        </svg>
+        <div class="pct" id="ringPct">0%</div>
+      </div>
+      <div>
+        <div class="lbl">B1-Reife</div>
+        <div class="sub" id="ringSub">Noch keine Übung</div>
+      </div>
+    </div>
+    <nav class="nav" id="nav">
+      <button data-v="dash" class="on"><span class="ic">◧</span>Übersicht</button>
+      <button data-v="practice"><span class="ic">✎</span>Grammatik</button>
+      <button data-v="vocab"><span class="ic">▤</span>Wortschatz</button>
+      <button data-v="reading"><span class="ic">▣</span>Lesen</button>
+      <button data-v="writing"><span class="ic">✒</span>Schreiben</button>
+      <button data-v="exam"><span class="ic">◆</span>Prüfung</button>
+    </nav>
+    <div class="side-foot">
+      <div class="stat-row">
+        <div class="stat"><div class="n" id="sXp">0</div><div class="k">XP</div></div>
+        <div class="stat"><div class="n" id="sStreak">0</div><div class="k">Serie</div></div>
+      </div>
+      <div class="mini">
+        <button id="btnExport">Export</button>
+        <button id="btnImport">Import</button>
+        <button id="btnReset">Reset</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <!-- DASHBOARD -->
+    <section class="view on" id="v-dash">
+      <div class="eyebrow">Willkommen zurück</div>
+      <h1>Deine Lernübersicht</h1>
+      <p class="lead">Diese Plattform beobachtet deine Fehler und schlägt dir vor, woran du als Nächstes arbeiten solltest. <span class="serif" style="font-style:italic">Ganz ohne Rätselraten.</span></p>
+
+      <div class="grid dash-top">
+        <div class="card plan">
+          <h3>Heute empfohlen · Recommended today</h3>
+          <div id="planList"></div>
+        </div>
+        <div class="card streak-card">
+          <div class="flame" id="dashFlame">◔</div>
+          <div>
+            <div class="big"><span id="dashStreak">0</span> <span style="font-size:16px;color:var(--ink-soft)">Tage</span></div>
+            <div class="cap">Lernserie · keep it alive</div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-soft)"><span>Level <span id="lvlNum">1</span></span><span id="lvlXp">0 / 100 XP</span></div>
+            <div class="xpbar"><i id="lvlBar" style="width:0%"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="weak-head">
+          <div><div class="eyebrow" style="margin:0">Schwächen-Radar</div><h2>Deine Themen im Blick</h2></div>
+        </div>
+        <div id="weakList"></div>
+      </div>
+    </section>
+
+    <!-- PRACTICE -->
+    <section class="view" id="v-practice">
+      <div id="practiceMenu">
+        <div class="eyebrow">Grammatik</div>
+        <h1>Übungsmodus wählen</h1>
+        <p class="lead">Der Fokus-Modus stellt dir gezielt Fragen aus deinen schwächsten Themen. Oder wähle ein einzelnes Thema.</p>
+        <div class="grid modes" id="topicModes"></div>
+      </div>
+      <div id="practiceRun" style="display:none"></div>
+    </section>
+
+    <!-- VOCAB -->
+    <section class="view" id="v-vocab">
+      <div class="eyebrow">Wortschatz</div>
+      <h1>Vokabeln · Spaced Repetition</h1>
+      <p class="lead">Karten, die du kannst, kommen seltener. Karten, die schwerfallen, öfter. So bleibt Gelerntes hängen.</p>
+      <div id="vocabRun"></div>
+    </section>
+
+    <!-- READING -->
+    <section class="view" id="v-reading">
+      <div id="readingMenu">
+        <div class="eyebrow">Lesen</div>
+        <h1>Leseverstehen</h1>
+        <p class="lead">Authentische B1-Texte mit Verständnisfragen. Lies genau — die Fragen prüfen Details.</p>
+        <div class="prompt-list" id="readingList"></div>
+      </div>
+      <div id="readingRun" style="display:none"></div>
+    </section>
+
+    <!-- WRITING -->
+    <section class="view" id="v-writing">
+      <div id="writingMenu">
+        <div class="eyebrow">Schreiben</div>
+        <h1>Schreibaufgaben</h1>
+        <p class="lead">Typische B1-Textsorten: E-Mails, Forenbeiträge, Anschreiben. Schreibe, vergleiche mit dem Musterbeispiel und prüfe dich mit der Checkliste.</p>
+        <div class="prompt-list" id="writingList"></div>
+      </div>
+      <div id="writingRun" style="display:none"></div>
+    </section>
+
+    <!-- EXAM -->
+    <section class="view" id="v-exam">
+      <div id="examIntro" class="exam-intro">
+        <div class="eyebrow">Prüfung</div>
+        <h1>Mock-Test</h1>
+        <p class="lead">Ein gemischter Test aus Grammatik, Wortschatz und Leseverstehen — auf Zeit. Danach bekommst du eine Auswertung pro Bereich.</p>
+        <div class="exam-facts">
+          <div class="fact"><div class="n">15</div><div class="k">Fragen</div></div>
+          <div class="fact"><div class="n">12</div><div class="k">Minuten</div></div>
+          <div class="fact"><div class="n">3</div><div class="k">Bereiche</div></div>
+        </div>
+        <button class="btn btn-ochre" id="startExam">Prüfung starten →</button>
+      </div>
+      <div id="examRun" style="display:none"></div>
+    </section>
+  </main>
+</div>
+
+<div class="timer" id="timer">12:00</div>
+<div class="toast" id="toast"></div>
+<input type="file" id="importFile" accept="application/json" hidden>
+
+<script>
+/* ============================================================
+   DATA BANK  —  German B1 content
+   ============================================================ */
+const TOPICS = {
+  kasus:"Kasus (Akk/Dat/Gen)", wechsel:"Wechselpräpositionen", konjunktiv:"Konjunktiv II",
+  passiv:"Passiv", relativ:"Relativsätze", konnektoren:"Konnektoren",
+  adjektiv:"Adjektivdeklination", tempora:"Tempora", indirekt:"Indirekte Rede"
+};
+
+// blank marker: ___
+const GRAMMAR = [
+  // Kasus
+  {t:"kasus",p:"Ich gebe ___ Mann das Buch.",g:"I give the man the book.",o:["den","dem","der","das"],a:"dem",hDe:"„geben“ verlangt ein Dativobjekt für die Person.",hEn:"'geben' takes the dative for the recipient (masc. → dem).",ex:"Dativ Maskulinum: der → dem."},
+  {t:"kasus",p:"Er sieht ___ Hund im Park.",g:"He sees the dog in the park.",o:["der","den","dem","des"],a:"den",hDe:"„sehen“ verlangt den Akkusativ (Wen?).",hEn:"Direct object → accusative; masc. der → den.",ex:"Akkusativ Maskulinum: der → den."},
+  {t:"kasus",p:"Das ist das Auto ___ Nachbarn.",g:"That is the neighbour's car.",o:["dem","den","des","der"],a:"des",hDe:"Besitz wird mit dem Genitiv ausgedrückt (Wessen?).",hEn:"Possession → genitive; masc. → des (+ '-n' on Nachbar).",ex:"Genitiv: das Auto des Nachbarn."},
+  {t:"kasus",p:"Ich helfe ___ Kindern gern.",g:"I like helping the children.",o:["die","den","der","dem"],a:"den",hDe:"„helfen“ + Dativ; im Plural: den.",hEn:"'helfen' takes dative; plural dative → den (+ '-n').",ex:"Dativ Plural: die → den Kindern."},
+  {t:"kasus",p:"Wir warten auf ___ Bus.",g:"We are waiting for the bus.",o:["dem","den","der","des"],a:"den",hDe:"„warten auf“ + Akkusativ.",hEn:"'warten auf' governs the accusative.",ex:"Akkusativ Maskulinum: der → den."},
+  // Wechselpräpositionen
+  {t:"wechsel",p:"Ich hänge das Bild an ___ Wand.",g:"I hang the picture on the wall.",o:["der","die","dem","das"],a:"die",hDe:"Bewegung / Richtung → Akkusativ (Wohin?).",hEn:"Movement (Wohin?) → accusative; fem. → die.",ex:"Akkusativ, weil eine Richtung: an die Wand."},
+  {t:"wechsel",p:"Das Bild hängt an ___ Wand.",g:"The picture hangs on the wall.",o:["die","der","dem","das"],a:"der",hDe:"Ort / Position → Dativ (Wo?).",hEn:"Location (Wo?) → dative; fem. → der.",ex:"Dativ, weil ein Ort: an der Wand."},
+  {t:"wechsel",p:"Er legt das Buch auf ___ Tisch.",g:"He puts the book on the table.",o:["dem","den","der","das"],a:"den",hDe:"„legen“ zeigt eine Bewegung → Akkusativ.",hEn:"'legen' = movement → accusative; masc. → den.",ex:"Wohin? → Akkusativ: auf den Tisch."},
+  {t:"wechsel",p:"Das Buch liegt auf ___ Tisch.",g:"The book lies on the table.",o:["den","dem","der","das"],a:"dem",hDe:"„liegen“ zeigt eine Position → Dativ.",hEn:"'liegen' = state → dative; masc. → dem.",ex:"Wo? → Dativ: auf dem Tisch."},
+  {t:"wechsel",p:"Sie geht in ___ Küche.",g:"She goes into the kitchen.",o:["der","die","dem","das"],a:"die",hDe:"„gehen in“ mit Richtung → Akkusativ.",hEn:"Going into → accusative; fem. → die.",ex:"Wohin? → Akkusativ: in die Küche."},
+  // Konjunktiv II
+  {t:"konjunktiv",p:"Wenn ich Zeit ___, würde ich dir helfen.",g:"If I had time, I would help you.",o:["habe","hätte","hatte","haben"],a:"hätte",hDe:"Irreale Bedingung → Konjunktiv II von „haben“.",hEn:"Unreal condition → Konjunktiv II: hätte.",ex:"Konjunktiv II: ich hätte."},
+  {t:"konjunktiv",p:"An deiner Stelle ___ ich das nicht machen.",g:"In your place I wouldn't do that.",o:["werde","würde","wurde","will"],a:"würde",hDe:"Höflicher Rat / Hypothese → würde + Infinitiv.",hEn:"Advice/hypothesis → würde + infinitive.",ex:"würde-Form für Ratschläge."},
+  {t:"konjunktiv",p:"___ Sie mir bitte helfen?",g:"Could you please help me?",o:["Können","Könnten","Konnten","Kannten"],a:"Könnten",hDe:"Höfliche Bitte → Konjunktiv II von „können“.",hEn:"Polite request → Könnten.",ex:"Höflichkeit: Könnten Sie …?"},
+  {t:"konjunktiv",p:"Ich wünschte, ich ___ mehr Geld.",g:"I wish I had more money.",o:["habe","hatte","hätte","haben"],a:"hätte",hDe:"„Ich wünschte, …“ verlangt Konjunktiv II.",hEn:"'Ich wünschte' triggers Konjunktiv II: hätte.",ex:"Wunsch: ich hätte."},
+  {t:"konjunktiv",p:"Wenn ich reich ___, würde ich viel reisen.",g:"If I were rich, I would travel a lot.",o:["bin","war","wäre","werde"],a:"wäre",hDe:"Konjunktiv II von „sein“ = wäre.",hEn:"Konjunktiv II of 'sein' → wäre.",ex:"Irreal: wenn ich reich wäre."},
+  // Passiv
+  {t:"passiv",p:"Das Haus ___ 1990 gebaut.",g:"The house was built in 1990.",o:["wird","wurde","würde","ist"],a:"wurde",hDe:"Vergangenes Passiv → „wurde“ + Partizip II.",hEn:"Past passive → wurde + participle.",ex:"Präteritum Passiv: wurde gebaut."},
+  {t:"passiv",p:"Der Brief ___ gerade geschrieben.",g:"The letter is being written right now.",o:["wird","wurde","ist","hat"],a:"wird",hDe:"Gegenwart Passiv → „wird“ + Partizip II.",hEn:"Present passive → wird + participle.",ex:"Präsens Passiv: wird geschrieben."},
+  {t:"passiv",p:"Das Auto muss noch repariert ___.",g:"The car still has to be repaired.",o:["worden","werden","wird","sein"],a:"werden",hDe:"Passiv mit Modalverb → Partizip + „werden“ (Infinitiv).",hEn:"Passive + modal → participle + werden.",ex:"muss repariert werden."},
+  {t:"passiv",p:"Die Arbeit ist gestern erledigt ___.",g:"The work was finished yesterday.",o:["geworden","worden","werden","wurde"],a:"worden",hDe:"Perfekt Passiv → „ist … worden“ (nicht „geworden“).",hEn:"Perfect passive uses 'worden', not 'geworden'.",ex:"ist erledigt worden."},
+  {t:"passiv",p:"Das Fenster ___ von einem Kind geöffnet.",g:"The window was opened by a child.",o:["wird","wurde","hat","ist"],a:"wurde",hDe:"Handelnde Person mit „von“ + Dativ; Vergangenheit → wurde.",hEn:"Agent with 'von'; past → wurde.",ex:"Präteritum Passiv: wurde geöffnet."},
+  // Relativsätze
+  {t:"relativ",p:"Das ist der Mann, ___ mir geholfen hat.",g:"That's the man who helped me.",o:["den","der","dem","dessen"],a:"der",hDe:"Subjekt im Relativsatz → Nominativ, maskulin: der.",hEn:"Subject of relative clause → nominative der.",ex:"Nominativ Maskulinum: der."},
+  {t:"relativ",p:"Die Frau, ___ ich gestern traf, ist Ärztin.",g:"The woman (whom) I met yesterday is a doctor.",o:["der","die","deren","dem"],a:"die",hDe:"Akkusativobjekt, feminin → die.",hEn:"Accusative object, fem. → die.",ex:"Akkusativ Femininum: die."},
+  {t:"relativ",p:"Das Buch, ___ Titel ich vergaß, war gut.",g:"The book whose title I forgot was good.",o:["das","dessen","deren","den"],a:"dessen",hDe:"Besitz im Relativsatz → Genitiv: dessen (n./m.).",hEn:"Possessive relative → genitive dessen.",ex:"Genitiv Neutrum/Maskulin: dessen."},
+  {t:"relativ",p:"Der Kollege, ___ ich vertraue, ist krank.",g:"The colleague I trust is ill.",o:["den","dem","der","dessen"],a:"dem",hDe:"„vertrauen“ + Dativ → dem.",hEn:"'vertrauen' takes dative → dem.",ex:"Dativ Maskulinum: dem."},
+  {t:"relativ",p:"Die Kinder, ___ dort spielen, sind meine.",g:"The children playing there are mine.",o:["der","die","den","deren"],a:"die",hDe:"Subjekt Plural → Nominativ: die.",hEn:"Plural subject → nominative die.",ex:"Nominativ Plural: die."},
+  // Konnektoren
+  {t:"konnektoren",p:"Es regnete stark. ___ blieben wir zu Hause.",g:"It rained hard. Therefore we stayed home.",o:["Trotzdem","Deshalb","Obwohl","Damit"],a:"Deshalb",hDe:"Grund → Folge: „deshalb“ (Verb an Position 2).",hEn:"Cause→result: 'deshalb' (verb second).",ex:"Deshalb blieben wir …"},
+  {t:"konnektoren",p:"Er ist reich, ___ ist er nicht glücklich.",g:"He is rich, yet he isn't happy.",o:["deshalb","trotzdem","weil","damit"],a:"trotzdem",hDe:"Gegensatz trotz Erwartung → „trotzdem“.",hEn:"Concession → 'trotzdem'.",ex:"…, trotzdem ist er …"},
+  {t:"konnektoren",p:"Ich lerne Deutsch, ___ ich in Berlin lebe.",g:"I learn German because I live in Berlin.",o:["weil","denn","obwohl","damit"],a:"weil",hDe:"Grund im Nebensatz (Verb am Ende) → „weil“.",hEn:"Reason, verb-final subclause → 'weil'.",ex:"…, weil ich in Berlin lebe."},
+  {t:"konnektoren",p:"___ es regnete, gingen wir spazieren.",g:"Although it rained, we went for a walk.",o:["Weil","Obwohl","Deshalb","Damit"],a:"Obwohl",hDe:"Einräumung → „obwohl“ (Nebensatz).",hEn:"Concessive subclause → 'obwohl'.",ex:"Obwohl es regnete, …"},
+  {t:"konnektoren",p:"Ich spare Geld, ___ ich reisen kann.",g:"I save money so that I can travel.",o:["weil","obwohl","damit","trotzdem"],a:"damit",hDe:"Absicht / Ziel → „damit“.",hEn:"Purpose → 'damit'.",ex:"…, damit ich reisen kann."},
+  // Adjektivdeklination
+  {t:"adjektiv",p:"Ich habe einen ___ Hund. (klein)",g:"I have a small dog.",o:["kleiner","kleinen","kleines","kleine"],a:"kleinen",hDe:"„einen“ (Akk. m.) → Adjektiv auf „-en“.",hEn:"After 'einen' (acc. masc.) → '-en'.",ex:"einen kleinen Hund."},
+  {t:"adjektiv",p:"Das ist ein ___ Haus. (schön)",g:"That is a beautiful house.",o:["schöne","schönen","schönes","schöner"],a:"schönes",hDe:"„ein“ (Neutrum) → Adjektiv auf „-es“.",hEn:"After 'ein' (neut.) → '-es'.",ex:"ein schönes Haus."},
+  {t:"adjektiv",p:"Die ___ Frau ist meine Tante. (nett)",g:"The nice woman is my aunt.",o:["nette","netten","nettes","netter"],a:"nette",hDe:"„die“ (Nom. f.) → schwache Endung „-e“.",hEn:"After definite 'die' (nom.) → '-e'.",ex:"die nette Frau."},
+  {t:"adjektiv",p:"Ich trinke gern ___ Kaffee. (heiß)",g:"I like drinking hot coffee.",o:["heiße","heißen","heißes","heißer"],a:"heißen",hDe:"Kein Artikel, Akk. maskulin → starke Endung „-en“.",hEn:"No article, acc. masc. → strong '-en'.",ex:"heißen Kaffee."},
+  {t:"adjektiv",p:"Er trägt einen ___ Mantel. (rot)",g:"He wears a red coat.",o:["roter","rotes","rote","roten"],a:"roten",hDe:"„einen“ (Akk. m.) → „-en“.",hEn:"After 'einen' (acc. masc.) → '-en'.",ex:"einen roten Mantel."},
+  // Tempora
+  {t:"tempora",p:"Gestern ___ ich ins Kino gegangen.",g:"Yesterday I went to the cinema.",o:["habe","bin","war","werde"],a:"bin",hDe:"„gehen“ bildet das Perfekt mit „sein“.",hEn:"Verbs of movement form Perfekt with 'sein'.",ex:"ich bin gegangen."},
+  {t:"tempora",p:"Als ich klein war, ___ ich oft im Park. (spielen)",g:"When I was little, I often played in the park.",o:["spiele","spielte","gespielt","spielen"],a:"spielte",hDe:"Erzählen in der Vergangenheit → Präteritum.",hEn:"Narrative past → Präteritum: spielte.",ex:"Präteritum: ich spielte."},
+  {t:"tempora",p:"Nachdem er gegessen ___, ging er schlafen.",g:"After he had eaten, he went to sleep.",o:["hat","hatte","war","ist"],a:"hatte",hDe:"Vorzeitigkeit → Plusquamperfekt „hatte … gegessen“.",hEn:"Prior action → past perfect: hatte gegessen.",ex:"Plusquamperfekt: hatte gegessen."},
+  {t:"tempora",p:"Morgen ___ ich dich anrufen.",g:"Tomorrow I will call you.",o:["werde","wurde","würde","bin"],a:"werde",hDe:"Zukunft → „werden“ + Infinitiv.",hEn:"Future → werden + infinitive.",ex:"Futur I: ich werde … anrufen."},
+  {t:"tempora",p:"Ich ___ das Buch schon gelesen.",g:"I have already read the book.",o:["bin","habe","war","werde"],a:"habe",hDe:"Perfekt von „lesen“ mit „haben“.",hEn:"Perfekt of 'lesen' → haben.",ex:"ich habe gelesen."},
+  // Indirekte Rede
+  {t:"indirekt",p:"Er sagt, er ___ krank.",g:"He says he is ill. (reported)",o:["ist","sei","wäre","war"],a:"sei",hDe:"Indirekte Rede → Konjunktiv I von „sein“: sei.",hEn:"Reported speech → Konjunktiv I: sei.",ex:"Konjunktiv I: er sei."},
+  {t:"indirekt",p:"Sie sagte, sie ___ keine Zeit.",g:"She said she had no time. (reported)",o:["hat","habe","hatte","hätte"],a:"habe",hDe:"Indirekte Rede → Konjunktiv I: habe.",hEn:"Reported speech → Konjunktiv I: habe.",ex:"Konjunktiv I: sie habe."}
+];
+
+const VOCAB = [
+  {w:"Bewerbung",art:"die",m:"application",ex:"Ich schicke meine Bewerbung per E-Mail.",th:"Arbeit"},
+  {w:"Lebenslauf",art:"der",m:"CV / résumé",ex:"Bitte legen Sie Ihren Lebenslauf bei.",th:"Arbeit"},
+  {w:"Vorstellungsgespräch",art:"das",m:"job interview",ex:"Das Vorstellungsgespräch ist am Montag.",th:"Arbeit"},
+  {w:"Vertrag",art:"der",m:"contract",ex:"Ich habe den Vertrag unterschrieben.",th:"Arbeit"},
+  {w:"Erfahrung",art:"die",m:"experience",ex:"Sie hat viel Erfahrung im Verkauf.",th:"Arbeit"},
+  {w:"Krankenversicherung",art:"die",m:"health insurance",ex:"Ohne Krankenversicherung geht es in Deutschland nicht.",th:"Gesundheit"},
+  {w:"Termin",art:"der",m:"appointment",ex:"Ich habe einen Termin beim Arzt.",th:"Gesundheit"},
+  {w:"Beschwerde",art:"die",m:"complaint / symptom",ex:"Welche Beschwerden haben Sie?",th:"Gesundheit"},
+  {w:"Untersuchung",art:"die",m:"examination / check-up",ex:"Die Untersuchung dauert zehn Minuten.",th:"Gesundheit"},
+  {w:"sich erholen",art:"",m:"to recover / rest",ex:"Ich muss mich vom Stress erholen.",th:"Gesundheit"},
+  {w:"Klimawandel",art:"der",m:"climate change",ex:"Der Klimawandel betrifft uns alle.",th:"Umwelt"},
+  {w:"Umwelt",art:"die",m:"environment",ex:"Wir müssen die Umwelt schützen.",th:"Umwelt"},
+  {w:"Müll",art:"der",m:"rubbish / waste",ex:"Man soll den Müll trennen.",th:"Umwelt"},
+  {w:"erneuerbar",art:"",m:"renewable",ex:"Erneuerbare Energien werden wichtiger.",th:"Umwelt"},
+  {w:"verschmutzen",art:"",m:"to pollute",ex:"Plastik verschmutzt die Meere.",th:"Umwelt"},
+  {w:"Miete",art:"die",m:"rent",ex:"Die Miete steigt jedes Jahr.",th:"Wohnen"},
+  {w:"Vermieter",art:"der",m:"landlord",ex:"Der Vermieter erhöht die Miete.",th:"Wohnen"},
+  {w:"Nebenkosten",art:"die",m:"utility costs (pl.)",ex:"Die Nebenkosten sind ziemlich hoch.",th:"Wohnen"},
+  {w:"Kaution",art:"die",m:"deposit",ex:"Die Kaution beträgt drei Monatsmieten.",th:"Wohnen"},
+  {w:"umziehen",art:"",m:"to move house",ex:"Wir ziehen nächsten Monat um.",th:"Wohnen"},
+  {w:"Unterkunft",art:"die",m:"accommodation",ex:"Wir suchen eine günstige Unterkunft.",th:"Reisen"},
+  {w:"Verspätung",art:"die",m:"delay",ex:"Der Zug hat zwanzig Minuten Verspätung.",th:"Reisen"},
+  {w:"Sehenswürdigkeit",art:"die",m:"sight / attraction",ex:"Berlin hat viele Sehenswürdigkeiten.",th:"Reisen"},
+  {w:"buchen",art:"",m:"to book",ex:"Ich habe ein Hotel online gebucht.",th:"Reisen"},
+  {w:"Grenze",art:"die",m:"border",ex:"An der Grenze wurde der Pass kontrolliert.",th:"Reisen"},
+  {w:"Nachricht",art:"die",m:"news / message",ex:"Ich habe dir eine Nachricht geschickt.",th:"Medien"},
+  {w:"Werbung",art:"die",m:"advertising",ex:"Im Fernsehen gibt es zu viel Werbung.",th:"Medien"},
+  {w:"zuverlässig",art:"",m:"reliable",ex:"Ist diese Quelle zuverlässig?",th:"Medien"},
+  {w:"Quelle",art:"die",m:"source",ex:"Man sollte die Quelle immer prüfen.",th:"Medien"},
+  {w:"sich informieren",art:"",m:"to inform oneself",ex:"Ich informiere mich online über Politik.",th:"Medien"},
+  {w:"erledigen",art:"",m:"to get done / handle",ex:"Ich muss noch einige Dinge erledigen.",th:"Alltag"},
+  {w:"sich beeilen",art:"",m:"to hurry",ex:"Beeil dich, der Bus kommt!",th:"Alltag"},
+  {w:"Vorschlag",art:"der",m:"suggestion",ex:"Das ist ein guter Vorschlag.",th:"Alltag"},
+  {w:"Entscheidung",art:"die",m:"decision",ex:"Das ist eine schwierige Entscheidung.",th:"Alltag"},
+  {w:"empfehlen",art:"",m:"to recommend",ex:"Ich kann dir dieses Café empfehlen.",th:"Alltag"},
+  {w:"verzichten auf",art:"",m:"to do without",ex:"Ich verzichte auf Zucker.",th:"Alltag"}
+];
+
+const READINGS = [
+  {
+    id:"umzug", kind:"Alltag", title:"Ein Neuanfang in Berlin",
+    teaser:"Wohnungssuche & Ankommen",
+    text:`Als Lena vor einem Jahr nach Berlin zog, dachte sie, das Schwierigste sei die neue Arbeit. Doch schnell merkte sie, dass die Wohnungssuche viel anstrengender war. Überall gab es lange Wartelisten, und für jede Besichtigung kamen zwanzig oder mehr Interessenten. „Ich habe fast fünfzig Bewerbungen geschrieben, bevor ich eine Zusage bekam", erzählt sie.
+
+Am Ende fand sie eine kleine Wohnung in Kreuzberg. Die Miete ist höher, als sie geplant hatte, aber dafür kann sie zu Fuß zur Arbeit gehen. „Das spart Zeit und Geld", sagt Lena. Nur an das laute Viertel musste sie sich erst gewöhnen.
+
+Heute fühlt sie sich in Berlin zu Hause. Sie hat neue Freunde gefunden und lernt in einem Kurs Deutsch. Ihr Tipp für andere: „Man braucht Geduld — und man sollte früh anfangen zu suchen."`,
+    qs:[
+      {p:"Was war für Lena am schwierigsten?",o:["Die neue Arbeit","Die Wohnungssuche","Der Deutschkurs"],a:"Die Wohnungssuche"},
+      {p:"Warum ist sie mit der Lage der Wohnung zufrieden?",o:["Die Miete ist billig","Sie kann zu Fuß zur Arbeit gehen","Das Viertel ist ruhig"],a:"Sie kann zu Fuß zur Arbeit gehen"},
+      {p:"Welchen Rat gibt Lena anderen?",o:["Man sollte früh mit der Suche beginnen","Man sollte nicht nach Berlin ziehen","Man sollte ein Auto kaufen"],a:"Man sollte früh mit der Suche beginnen"}
+    ]
+  },
+  {
+    id:"ehrenamt", kind:"Gesellschaft", title:"Zeit, die man verschenkt",
+    teaser:"Ehrenamt & Freiwilligenarbeit",
+    text:`Immer mehr Menschen in Deutschland engagieren sich ehrenamtlich, also freiwillig und ohne Bezahlung. Sie helfen zum Beispiel in Sportvereinen, bei der Feuerwehr oder in sozialen Projekten. Studien zeigen, dass etwa jeder dritte Erwachsene regelmäßig ein Ehrenamt ausübt.
+
+Warum machen die Menschen das? Viele sagen, dass es ihnen Freude macht, anderen zu helfen. Andere möchten neue Leute kennenlernen oder etwas Sinnvolles in ihrer Freizeit tun. Gerade für Menschen, die neu in einer Stadt sind, kann ein Ehrenamt ein guter Weg sein, Kontakte zu knüpfen.
+
+Natürlich kostet dieses Engagement Zeit. Deshalb ist es wichtig, eine Aufgabe zu finden, die zum eigenen Leben passt. Wer nur wenig Zeit hat, kann trotzdem helfen — manchmal reichen schon ein paar Stunden im Monat.`,
+    qs:[
+      {p:"Was bedeutet „ehrenamtlich“?",o:["Man arbeitet freiwillig ohne Bezahlung","Man arbeitet in Vollzeit","Man wird gut bezahlt"],a:"Man arbeitet freiwillig ohne Bezahlung"},
+      {p:"Welcher Grund wird im Text genannt?",o:["Man verdient viel Geld","Man möchte neue Leute kennenlernen","Man muss es tun"],a:"Man möchte neue Leute kennenlernen"},
+      {p:"Was sagt der Text über die nötige Zeit?",o:["Man muss jeden Tag helfen","Schon wenige Stunden im Monat können reichen","Ein Ehrenamt kostet keine Zeit"],a:"Schon wenige Stunden im Monat können reichen"}
+    ]
+  },
+  {
+    id:"nachrichten", kind:"Medien", title:"Woher kommen deine Nachrichten?",
+    teaser:"Digitale Medien & Quellen",
+    text:`Früher lasen die meisten Menschen morgens die Zeitung. Heute holen sich viele ihre Nachrichten auf dem Handy — über Apps, soziale Netzwerke oder Videos. Das geht schnell und ist oft kostenlos. Doch dabei entsteht ein Problem: Nicht alle Informationen im Internet sind richtig.
+
+Fachleute empfehlen deshalb, immer auf die Quelle zu achten. Wer hat die Nachricht geschrieben? Ist die Seite zuverlässig? Steht dieselbe Information auch woanders? Besonders bei Nachrichten, die starke Gefühle auslösen, sollte man vorsichtig sein, denn Falschmeldungen verbreiten sich oft schneller als geprüfte Berichte.
+
+Am Ende gilt: Es ist besser, eine Nachricht in Ruhe zu prüfen, als sie sofort weiterzuleiten. So schützt man sich und andere vor falschen Informationen.`,
+    qs:[
+      {p:"Wie informieren sich heute viele Menschen?",o:["Nur über gedruckte Zeitungen","Über das Handy und soziale Netzwerke","Gar nicht mehr"],a:"Über das Handy und soziale Netzwerke"},
+      {p:"Worauf soll man laut Text besonders achten?",o:["Auf die Quelle der Nachricht","Auf die Länge des Textes","Auf die Uhrzeit"],a:"Auf die Quelle der Nachricht"},
+      {p:"Was empfiehlt der Text am Ende?",o:["Nachrichten sofort weiterleiten","Nachrichten erst in Ruhe prüfen","Keine Nachrichten mehr lesen"],a:"Nachrichten erst in Ruhe prüfen"}
+    ]
+  }
+];
+
+const WRITINGS = [
+  {
+    id:"beschwerde", kind:"Formelle E-Mail",
+    title:"Beschwerde über eine verspätete Lieferung",
+    brief:"Du hast vor zwei Wochen online einen Tisch bestellt und noch nichts erhalten. Schreibe eine formelle E-Mail an den Kundenservice.",
+    check:["Formelle Anrede („Sehr geehrte Damen und Herren“)","Grund / Problem klar nennen (Bestellnummer, Datum)","Konnektoren nutzen (leider, deshalb, außerdem)","Konkrete Forderung (Lieferung oder Erstattung)","Höflicher Schluss & Grußformel"],
+    model:`Sehr geehrte Damen und Herren,
+
+am 3. Juni habe ich in Ihrem Onlineshop einen Esstisch bestellt (Bestellnummer 48213). Laut Bestätigung sollte die Lieferung innerhalb einer Woche erfolgen. Leider habe ich die Ware bis heute nicht erhalten.
+
+Ich habe bereits zweimal versucht, Sie telefonisch zu erreichen, konnte aber niemanden sprechen. Deshalb wende ich mich nun schriftlich an Sie.
+
+Ich bitte Sie, mir mitzuteilen, wann ich mit der Lieferung rechnen kann. Sollte dies nicht innerhalb von fünf Tagen möglich sein, möchte ich die Bestellung stornieren und den vollen Betrag zurückerhalten.
+
+Über eine schnelle Antwort würde ich mich freuen.
+
+Mit freundlichen Grüßen
+Biji Amar`
+  },
+  {
+    id:"einladung", kind:"Informelle E-Mail",
+    title:"Einladung zum Geburtstag",
+    brief:"Lade eine Freundin / einen Freund zu deiner Geburtstagsfeier ein. Nenne Datum, Ort und was ihr machen wollt.",
+    check:["Informelle Anrede („Liebe/Lieber …“, „Hallo …“)","Anlass und Gefühl ausdrücken","Datum, Uhrzeit und Ort nennen","Eine Frage stellen (Kannst du kommen?)","Informeller Gruß („Liebe Grüße“, „Bis bald“)"],
+    model:`Hallo Anna,
+
+wie geht es dir? Ich hoffe, du hast gerade nicht zu viel Stress.
+
+Ich möchte dich zu meiner Geburtstagsfeier einladen! Ich feiere am Samstag, den 14. Juni, ab 18 Uhr bei mir zu Hause in Steglitz. Wir wollen zusammen essen, ein bisschen Musik hören und später vielleicht in den Park gehen.
+
+Es wäre wirklich schön, wenn du kommen könntest. Kannst du mir bis Mittwoch Bescheid geben? Und wenn du jemanden mitbringen möchtest, ist das überhaupt kein Problem.
+
+Ich freue mich schon sehr auf dich!
+
+Liebe Grüße
+Biji`
+  },
+  {
+    id:"forum", kind:"Forumsbeitrag",
+    title:"Meinung: Homeoffice — Fluch oder Segen?",
+    brief:"In einem Online-Forum wird über Homeoffice diskutiert. Schreibe deine Meinung mit Vor- und Nachteilen und einem Beispiel.",
+    check:["Klare eigene Meinung am Anfang oder Ende","Mindestens ein Vorteil und ein Nachteil","Persönliches Beispiel oder Erfahrung","Konnektoren (einerseits/andererseits, außerdem, trotzdem)","Zusammenfassender Schlusssatz"],
+    model:`Ich finde die Diskussion über Homeoffice sehr interessant und möchte gern meine Meinung teilen.
+
+Einerseits hat das Arbeiten von zu Hause viele Vorteile. Man spart Zeit, weil man nicht pendeln muss, und kann sich die Arbeit freier einteilen. Ich selbst arbeite zweimal pro Woche im Homeoffice und bin an diesen Tagen oft konzentrierter.
+
+Andererseits gibt es auch Nachteile. Der Kontakt zu den Kollegen fehlt, und manchmal ist es schwer, Arbeit und Freizeit zu trennen. Außerdem fühlen sich manche Menschen zu Hause einsam.
+
+Meiner Meinung nach ist eine Mischung aus Büro und Homeoffice die beste Lösung. So kann man die Vorteile beider Welten nutzen.`
+  },
+  {
+    id:"anschreiben", kind:"Anschreiben",
+    title:"Kurzes Bewerbungsanschreiben",
+    brief:"Bewirb dich auf eine Stelle als Mitarbeiter/in in einem Café. Erkläre kurz, warum du geeignet bist.",
+    check:["Formelle Anrede und Betreffzeile","Bezug auf die Stelle","Relevante Erfahrung oder Stärke nennen","Motivation zeigen","Bitte um ein Gespräch & formeller Gruß"],
+    model:`Betreff: Bewerbung als Servicekraft im Café Nana
+
+Sehr geehrte Frau Berg,
+
+mit großem Interesse habe ich Ihre Anzeige gelesen und bewerbe mich hiermit um die Stelle als Servicekraft in Ihrem Café.
+
+In den letzten zwei Jahren habe ich bereits in der Gastronomie gearbeitet und dabei gelernt, auch in stressigen Situationen freundlich und ruhig zu bleiben. Der direkte Kontakt mit Gästen macht mir viel Freude, und ich arbeite gern im Team.
+
+Über die Möglichkeit, mich persönlich vorzustellen, würde ich mich sehr freuen.
+
+Mit freundlichen Grüßen
+Biji Amar`
+  }
+];
+
+/* ============================================================
+   STATE
+   ============================================================ */
+const KEY="deutschB1_state_v1";
+const todayStr=()=>new Date().toISOString().slice(0,10);
+const defaultState=()=>({
+  xp:0, streak:0, lastDay:null,
+  topics:Object.fromEntries(Object.keys(TOPICS).map(k=>[k,{c:0,t:0}])),
+  srs:{}, // wordKey -> {box, due}
+  readDone:{}, exams:[]
+});
+let S=load();
+function load(){try{const r=JSON.parse(localStorage.getItem(KEY));if(r&&r.topics){for(const k of Object.keys(TOPICS))if(!r.topics[k])r.topics[k]={c:0,t:0};return r;}}catch(e){}return defaultState();}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+function touchDay(){
+  const t=todayStr();
+  if(S.lastDay===t)return;
+  const y=new Date(Date.now()-864e5).toISOString().slice(0,10);
+  S.streak = (S.lastDay===y)? S.streak+1 : 1;
+  S.lastDay=t; save();
+}
+function addXp(n){S.xp+=n;save();renderStats();}
+
+/* ============================================================
+   RENDER — global stats
+   ============================================================ */
+function renderStats(){
+  document.getElementById('sXp').textContent=S.xp;
+  document.getElementById('sStreak').textContent=S.streak;
+  const r=readiness();
+  const off=176-(176*r/100);
+  document.getElementById('ringArc').style.strokeDashoffset=off;
+  document.getElementById('ringPct').textContent=r+'%';
+  document.getElementById('ringSub').textContent = r===0?'Noch keine Übung': r<50?'Grundlagen festigen': r<80?'Auf gutem Weg':'Fast prüfungsreif';
+  // dashboard bits
+  const lvl=Math.floor(S.xp/100)+1, into=S.xp%100;
+  document.getElementById('lvlNum').textContent=lvl;
+  document.getElementById('lvlXp').textContent=into+' / 100 XP';
+  document.getElementById('lvlBar').style.width=into+'%';
+  document.getElementById('dashStreak').textContent=S.streak;
+  document.getElementById('dashFlame').textContent=S.streak>=3?'◉':S.streak>=1?'◑':'◔';
+}
+function readiness(){
+  let acc=0,cov=0,keys=Object.keys(TOPICS);
+  for(const k of keys){const s=S.topics[k];if(s.t>0){acc+=s.c/s.t;cov++;}}
+  if(cov===0)return 0;
+  const meanAcc=acc/cov, coverage=cov/keys.length;
+  return Math.round(meanAcc*100*(0.55+0.45*coverage));
+}
+function topicStrength(k){const s=S.topics[k];if(s.t===0)return{cls:'s-new',chip:'c-new',label:'neu',pct:0,acc:null};const a=s.c/s.t;const pct=Math.round(a*100);if(a<0.5)return{cls:'s-weak',chip:'c-weak',label:'Schwach',pct,acc:a};if(a<0.8)return{cls:'s-dev',chip:'c-dev',label:'Im Aufbau',pct,acc:a};return{cls:'s-strong',chip:'c-strong',label:'Stark',pct,acc:a};}
+
+/* ============================================================
+   DASHBOARD
+   ============================================================ */
+function renderDash(){
+  renderStats();
+  // weakness bars
+  const wl=document.getElementById('weakList');
+  wl.innerHTML=Object.keys(TOPICS).map(k=>{
+    const st=topicStrength(k),s=S.topics[k];
+    return `<div class="wbar"><div class="top"><b>${TOPICS[k]}</b>
+      <span class="chip ${st.chip}">${st.label}</span></div>
+      <div class="track ${st.cls}"><i style="width:${st.pct}%"></i></div>
+      <div class="tag" style="margin-top:5px;font-family:'IBM Plex Mono';font-size:11.5px;color:var(--ink-faint)">${s.t>0?`${s.c}/${s.t} richtig`:'noch nicht geübt'}</div></div>`;
+  }).join('');
+  // adaptive plan
+  const plan=buildPlan();
+  document.getElementById('planList').innerHTML=plan.map(p=>`
+    <div class="task"><div class="badge">${p.ic}</div>
+    <div class="t-main"><b>${p.title}</b><small>${p.sub}</small></div>
+    <button class="go" data-goto="${p.go}" data-arg="${p.arg||''}">${p.cta}</button></div>`).join('');
+  document.querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>{
+    const g=b.dataset.goto;
+    if(g==='focus'){switchView('practice');startPractice('focus');}
+    else if(g==='vocab'){switchView('vocab');}
+    else if(g==='reading'){switchView('reading');}
+    else if(g==='exam'){switchView('exam');}
+  });
+}
+function buildPlan(){
+  const plan=[];
+  // weakest attempted topic
+  let weak=null,wa=2;
+  for(const k of Object.keys(TOPICS)){const s=S.topics[k];if(s.t>=2){const a=s.c/s.t;if(a<wa){wa=a;weak=k;}}}
+  const untried=Object.keys(TOPICS).filter(k=>S.topics[k].t===0);
+  if(weak&&wa<0.8){plan.push({ic:'✎',title:`Schwachstelle: ${TOPICS[weak]}`,sub:`Nur ${Math.round(wa*100)}% richtig — hier lohnt sich Übung.`,cta:'Üben',go:'focus'});}
+  else if(untried.length){plan.push({ic:'✎',title:`Neues Thema: ${TOPICS[untried[0]]}`,sub:'Noch nicht geübt — starte hier.',cta:'Starten',go:'focus'});}
+  else{plan.push({ic:'✎',title:'Gemischte Grammatik',sub:'Halte deine starken Themen frisch.',cta:'Üben',go:'focus'});}
+  // vocab due
+  const due=dueWords().length;
+  plan.push({ic:'▤',title:due>0?`${due} Vokabeln fällig`:'Neue Vokabeln lernen',sub:due>0?'Wiederholung hält den Wortschatz im Kopf.':'Baue deinen aktiven Wortschatz aus.',cta:'Lernen',go:'vocab'});
+  // reading not done
+  const notRead=READINGS.find(r=>!S.readDone[r.id]);
+  if(notRead)plan.push({ic:'▣',title:`Lesen: ${notRead.title}`,sub:'Ein neuer B1-Text wartet auf dich.',cta:'Lesen',go:'reading'});
+  else plan.push({ic:'◆',title:'Zeit für einen Mock-Test',sub:'Prüfe deinen Stand unter Zeitdruck.',cta:'Prüfung',go:'exam'});
+  return plan;
+}
+
+/* ============================================================
+   QUESTION ENGINE (shared by practice & exam)
+   ============================================================ */
+function questionHTML(item,idx,total,ctx){
+  const promptHtml=item.p.replace('___','<span class="blank">＿＿</span>');
+  return `<div class="q-shell">
+    <div class="q-meta"><span class="q-topic">${TOPICS[item.t]||ctx.label||''}</span>
+      <span class="q-count">${idx+1} / ${total}</span></div>
+    <div class="progress"><i style="width:${(idx)/total*100}%"></i></div>
+    <div class="q-prompt">${promptHtml}</div>
+    <div class="q-gloss">${item.g}</div>
+    <div class="opts" id="opts"></div>
+    <div id="hintSlot"></div>
+    <div id="fbSlot"></div>
+    <div class="q-actions" id="qActions"></div>
+  </div>`;
+}
+function renderOptions(item,onPick){
+  const box=document.getElementById('opts');
+  const keys=['A','B','C','D'];
+  box.innerHTML=item.o.map((o,i)=>`<button class="opt" data-o="${encodeURIComponent(o)}"><span class="key">${keys[i]}</span>${o}</button>`).join('');
+  box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>onPick(decodeURIComponent(b.dataset.o),b));
+}
+
+/* ---- Practice controller ---- */
+let PRACTICE=null;
+function startPractice(mode){
+  document.getElementById('practiceMenu').style.display='none';
+  const run=document.getElementById('practiceRun');run.style.display='block';
+  let pool;
+  if(mode==='focus'){
+    // weighted by weakness: weak & untried topics first
+    const scored=Object.keys(TOPICS).map(k=>{const s=S.topics[k];const a=s.t?s.c/s.t:0.35;return{k,w:s.t? (1-a)+0.15 : 0.9};});
+    const bag=[];
+    GRAMMAR.forEach(q=>{const sc=scored.find(x=>x.k===q.t);for(let i=0;i<Math.round(sc.w*10);i++)bag.push(q);});
+    pool=shuffle(bag).filter((v,i,arr)=>arr.indexOf(v)===i).slice(0,10);
+    if(pool.length<8)pool=shuffle(GRAMMAR).slice(0,10);
+  }else{
+    pool=shuffle(GRAMMAR.filter(q=>q.t===mode));
+  }
+  PRACTICE={pool,idx:0,correct:0,mode,hintsUsed:0};
+  touchDay();
+  nextPractice();
+}
+function nextPractice(){
+  const P=PRACTICE;
+  if(P.idx>=P.pool.length)return finishPractice();
+  const item=P.pool[P.idx];
+  document.getElementById('practiceRun').innerHTML=questionHTML(item,P.idx,P.pool.length,{});
+  let answered=false,usedHint=0;
+  renderOptions(item,(val,btn)=>{
+    if(answered)return;answered=true;
+    const ok=val===item.a;
+    grade(item.t,ok);
+    P.correct+=ok?1:0;
+    document.querySelectorAll('.opt').forEach(b=>{b.disabled=true;const bv=decodeURIComponent(b.dataset.o);if(bv===item.a)b.classList.add('correct');else if(bv===val&&!ok)b.classList.add('wrong');});
+    showFeedback(item,ok, usedHint);
+  });
+  // actions: hint + skip
+  const act=document.getElementById('qActions');
+  act.innerHTML=`<button class="btn btn-ghost" id="hintBtn">Tipp anzeigen · Hint</button>`;
+  document.getElementById('hintBtn').onclick=()=>{
+    usedHint++;PRACTICE.hintsUsed++;
+    const slot=document.getElementById('hintSlot');
+    if(usedHint===1)slot.innerHTML=`<div class="hintbox"><b>Tipp 1:</b> <span class="de">${item.hDe}</span></div>`;
+    else slot.innerHTML=`<div class="hintbox"><b>Tipp 1:</b> <span class="de">${item.hDe}</span><div style="margin-top:8px"><b>Hint 2 (EN):</b> ${item.hEn}</div></div>`;
+    if(usedHint>=2)document.getElementById('hintBtn').disabled=true,document.getElementById('hintBtn').style.opacity=.5;
+  };
+}
+function showFeedback(item,ok,usedHint){
+  const xp = ok ? (usedHint? 6:10) : 0;
+  if(ok)addXp(xp);
+  document.getElementById('fbSlot').innerHTML=`
+    <div class="feedback ${ok?'ok':'no'}">
+      <div class="fh">${ok?'✓ Richtig!':'✗ Nicht ganz.'} ${ok&&xp?`<span style="font-family:IBM Plex Mono;font-size:12px;color:var(--ochre-deep)">+${xp} XP</span>`:''}</div>
+      <div class="fx">Antwort: <b class="serif">${item.a}</b> — ${item.ex}<br><span class="serif" style="color:var(--ink-faint)">${item.hEn}</span></div>
+    </div>`;
+  const act=document.getElementById('qActions');
+  const last=PRACTICE.idx>=PRACTICE.pool.length-1;
+  act.innerHTML=`<button class="btn btn-primary" id="nextBtn">${last?'Ergebnis ansehen':'Weiter'} →</button>`;
+  document.getElementById('nextBtn').onclick=()=>{PRACTICE.idx++;nextPractice();};
+  renderStats();
+}
+function finishPractice(){
+  const P=PRACTICE;const pct=Math.round(P.correct/P.pool.length*100);
+  const band = pct>=80?['Stark','c-strong']: pct>=50?['Solide','c-dev']:['Weiter üben','c-weak'];
+  document.getElementById('practiceRun').innerHTML=`
+    <div class="eyebrow">Runde beendet</div>
+    <h1>${P.correct} / ${P.pool.length} richtig</h1>
+    <div class="result-band ${band[1]}" style="background:var(--paper-2)">${band[0]} · ${pct}%</div>
+    <p class="lead">Deine Themen-Statistik wurde aktualisiert. ${P.hintsUsed>0?`Du hast ${P.hintsUsed} Tipp(s) genutzt.`:'Ganz ohne Tipps — stark!'}</p>
+    <div class="q-actions" style="margin-top:24px">
+      <button class="btn btn-primary" id="againBtn">Nochmal üben</button>
+      <button class="btn btn-ghost" id="backBtn">Zur Themenauswahl</button>
+    </div>`;
+  document.getElementById('againBtn').onclick=()=>startPractice(P.mode);
+  document.getElementById('backBtn').onclick=()=>{document.getElementById('practiceRun').style.display='none';document.getElementById('practiceMenu').style.display='block';renderTopicModes();};
+  toast(`Runde fertig · +${P.correct*10} XP möglich`);
+}
+function grade(topic,ok){S.topics[topic].t++;if(ok)S.topics[topic].c++;save();}
+
+function renderTopicModes(){
+  const box=document.getElementById('topicModes');
+  const focus=`<button class="mode" style="border-color:var(--ochre)" data-m="focus">
+    <div class="mi">◎</div><b>Fokus-Modus</b>
+    <small>Gezielte Fragen aus deinen schwächsten Themen — adaptiv gewählt.</small></button>`;
+  const rest=Object.keys(TOPICS).map(k=>{const st=topicStrength(k);const s=S.topics[k];
+    return `<button class="mode" data-m="${k}"><span class="n">${s.t>0?st.pct+'%':'—'}</span>
+      <div class="mi">✎</div><b>${TOPICS[k]}</b>
+      <small>${GRAMMAR.filter(q=>q.t===k).length} Fragen · <span style="color:${st.cls==='s-weak'?'var(--rust)':st.cls==='s-dev'?'var(--amber)':st.cls==='s-strong'?'var(--green)':'var(--ink-faint)'}">${st.label}</span></small></button>`;}).join('');
+  box.innerHTML=focus+rest;
+  box.querySelectorAll('.mode').forEach(b=>b.onclick=()=>startPractice(b.dataset.m));
+}
+
+/* ============================================================
+   VOCAB SRS
+   ============================================================ */
+const BOX_DAYS=[0,1,3,7,16];
+function wkey(v){return v.w;}
+function dueWords(){
+  const now=Date.now();
+  return VOCAB.filter(v=>{const s=S.srs[wkey(v)];return !s || s.due<=now;});
+}
+let VC=null;
+function renderVocab(){
+  const due=dueWords();
+  const box=document.getElementById('vocabRun');
+  if(due.length===0){
+    const next=Object.values(S.srs).map(s=>s.due).sort((a,b)=>a-b)[0];
+    box.innerHTML=`<div class="empty"><div class="em">◍</div><b>Alles wiederholt!</b><p style="margin-top:8px">Keine Karten fällig. ${next?'Komm später wieder — die nächste Karte ist bald dran.':''}</p>
+      <button class="btn btn-ghost" id="vReset" style="margin-top:18px">Trotzdem alle üben</button></div>`;
+    document.getElementById('vReset').onclick=()=>{VC={queue:shuffle([...VOCAB]),i:0,flip:false,done:0,extra:true};showCard();};
+    return;
+  }
+  VC={queue:shuffle(due),i:0,flip:false,done:0};
+  touchDay();
+  showCard();
+}
+function showCard(){
+  const box=document.getElementById('vocabRun');
+  if(VC.i>=VC.queue.length){
+    box.innerHTML=`<div class="empty"><div class="em">✦</div><b>${VC.done} Karten fertig</b><p style="margin-top:8px">Gut gemacht — dein Wortschatz wächst.</p>
+      <button class="btn btn-primary" id="vAgain" style="margin-top:18px">Weiter lernen</button></div>`;
+    document.getElementById('vAgain').onclick=renderVocab;
+    toast(`${VC.done} Vokabeln geübt`);
+    return;
+  }
+  const v=VC.queue[VC.i];
+  const front=`<div class="art">${v.art||''}</div><div class="word">${v.w}</div><div class="flip-hint">Tippen zum Umdrehen · tap to flip</div>`;
+  const back=`<div class="art">${v.art} ${v.w}</div><div class="mean">${v.m}</div><div class="ex">„${v.ex}"</div>`;
+  box.innerHTML=`<div class="flash">
+    <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono';font-size:12.5px;color:var(--ink-faint);margin-bottom:4px"><span>${v.th}</span><span>${VC.i+1} / ${VC.queue.length}</span></div>
+    <div class="card" id="flashCard">${VC.flip?back:front}</div>
+    <div class="flash-actions" id="flashActions" style="visibility:${VC.flip?'visible':'hidden'}">
+      <button class="f-again" id="fAgain">Nochmal</button>
+      <button class="f-good" id="fGood">Gewusst ✓</button>
+    </div></div>`;
+  document.getElementById('flashCard').onclick=()=>{if(!VC.flip){VC.flip=true;showCard();}};
+  if(VC.flip){
+    document.getElementById('fAgain').onclick=()=>rateCard(v,false);
+    document.getElementById('fGood').onclick=()=>rateCard(v,true);
+  }
+}
+function rateCard(v,good){
+  const k=wkey(v);let s=S.srs[k]||{box:0,due:0};
+  if(good){s.box=Math.min(s.box+1,BOX_DAYS.length-1);addXp(4);}
+  else{s.box=1;}
+  s.due=Date.now()+BOX_DAYS[s.box]*864e5;
+  S.srs[k]=s;save();
+  VC.done++;VC.i++;VC.flip=false;showCard();renderStats();
+}
+
+/* ============================================================
+   READING
+   ============================================================ */
+function renderReadingList(){
+  document.getElementById('readingList').innerHTML=READINGS.map(r=>`
+    <button class="wprompt" data-r="${r.id}">
+      <div><span class="kind">${r.kind}</span><b style="display:block;margin-top:4px">${r.title}</b>
+      <small>${r.teaser} · ${r.qs.length} Fragen</small></div>
+      <span style="color:${S.readDone[r.id]?'var(--green)':'var(--blue)'};font-weight:600;font-size:14px">${S.readDone[r.id]?'✓ erledigt':'Lesen →'}</span>
+    </button>`).join('');
+  document.querySelectorAll('#readingList [data-r]').forEach(b=>b.onclick=()=>startReading(b.dataset.r));
+}
+let RD=null;
+function startReading(id){
+  const r=READINGS.find(x=>x.id===id);
+  document.getElementById('readingMenu').style.display='none';
+  const run=document.getElementById('readingRun');run.style.display='block';
+  RD={r,answers:{}};
+  run.innerHTML=`
+    <button class="btn btn-ghost" id="rBack" style="margin-bottom:20px">← Zurück</button>
+    <span class="kind" style="color:var(--blue);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700">${r.kind}</span>
+    <div class="reading-title" style="margin-top:6px">${r.title}</div>
+    <div class="card" style="margin:16px 0"><div class="passage">${r.text.split('\n\n').map(p=>`<p>${p}</p>`).join('')}</div></div>
+    <h2 style="margin:26px 0 4px">Fragen zum Text</h2>
+    <div id="rQs"></div>
+    <button class="btn btn-primary" id="rSubmit" style="margin-top:8px">Antworten prüfen</button>
+    <div id="rResult"></div>`;
+  document.getElementById('rBack').onclick=backReading;
+  const qbox=document.getElementById('rQs');
+  qbox.innerHTML=r.qs.map((q,i)=>`<div class="card" style="margin-bottom:12px">
+    <div class="q-prompt" style="font-size:16.5px;font-weight:600">${i+1}. ${q.p}</div>
+    <div class="opts" style="margin:14px 0 0" data-qi="${i}">
+      ${q.o.map((o,j)=>`<button class="opt" data-o="${encodeURIComponent(o)}"><span class="key">${'ABC'[j]}</span>${o}</button>`).join('')}
+    </div></div>`).join('');
+  qbox.querySelectorAll('.opts').forEach(g=>{const qi=+g.dataset.qi;g.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+    g.querySelectorAll('.opt').forEach(x=>x.style.borderColor='var(--line)',x=>x.classList?.remove('correct'));
+    g.querySelectorAll('.opt').forEach(x=>{x.style.background='var(--card)';x.style.borderColor='var(--line)';});
+    b.style.borderColor='var(--blue)';b.style.background='var(--blue-tint)';
+    RD.answers[qi]=decodeURIComponent(b.dataset.o);
+  });});
+  document.getElementById('rSubmit').onclick=submitReading;
+}
+function submitReading(){
+  const r=RD.r;let correct=0;
+  document.querySelectorAll('#rQs .opts').forEach(g=>{const qi=+g.dataset.qi;const q=r.qs[qi];
+    g.querySelectorAll('.opt').forEach(b=>{const bv=decodeURIComponent(b.dataset.o);b.disabled=true;
+      if(bv===q.a){b.classList.add('correct');}
+      else if(bv===RD.answers[qi]){b.classList.add('wrong');}});
+    if(RD.answers[qi]===q.a)correct++;
+  });
+  const pct=Math.round(correct/r.qs.length*100);
+  if(!S.readDone[r.id]){addXp(correct*8);}
+  S.readDone[r.id]=true;save();touchDay();
+  document.getElementById('rResult').innerHTML=`<div class="feedback ${pct>=67?'ok':'no'}" style="margin-top:18px">
+    <div class="fh">${correct} / ${r.qs.length} richtig · ${pct}%</div>
+    <div class="fx">${pct>=67?'Gutes Textverständnis!':'Lies die markierten Stellen noch einmal genau.'}</div></div>
+    <button class="btn btn-ghost" id="rBack2" style="margin-top:14px">← Zur Textauswahl</button>`;
+  document.getElementById('rBack2').onclick=backReading;
+  document.getElementById('rSubmit').style.display='none';
+  renderStats();toast(`Lesen: +${correct*8} XP`);
+}
+function backReading(){document.getElementById('readingRun').style.display='none';document.getElementById('readingMenu').style.display='block';renderReadingList();}
+
+/* ============================================================
+   WRITING
+   ============================================================ */
+function renderWritingList(){
+  document.getElementById('writingList').innerHTML=WRITINGS.map(w=>`
+    <button class="wprompt" data-w="${w.id}">
+      <div><span class="kind">${w.kind}</span><b style="display:block;margin-top:4px">${w.title}</b>
+      <small>${w.brief.slice(0,70)}…</small></div>
+      <span style="color:var(--blue);font-weight:600;font-size:14px">Schreiben →</span></button>`).join('');
+  document.querySelectorAll('#writingList [data-w]').forEach(b=>b.onclick=()=>startWriting(b.dataset.w));
+}
+function startWriting(id){
+  const w=WRITINGS.find(x=>x.id===id);
+  document.getElementById('writingMenu').style.display='none';
+  const run=document.getElementById('writingRun');run.style.display='block';
+  run.innerHTML=`
+    <button class="btn btn-ghost" id="wBack" style="margin-bottom:20px">← Zurück</button>
+    <span class="kind" style="color:var(--blue);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700">${w.kind}</span>
+    <h1 style="margin-top:6px;font-size:26px">${w.title}</h1>
+    <div class="card" style="margin:16px 0;background:var(--blue-tint);border-color:#BcD3D6"><b>Aufgabe:</b> ${w.brief}</div>
+    <h2 style="margin:20px 0 6px;font-size:17px">Deine Antwort</h2>
+    <textarea class="writing-area" id="wArea" placeholder="Schreibe hier deinen Text…"></textarea>
+    <div class="wcount" id="wCount">0 Wörter</div>
+    <h2 style="margin:22px 0 4px;font-size:16px">Checkliste — hast du daran gedacht?</h2>
+    <ul class="checklist">${w.check.map(c=>`<li>${c}</li>`).join('')}</ul>
+    <button class="btn btn-ochre" id="wShow" style="margin-top:8px">Musterbeispiel anzeigen</button>
+    <div id="wModel"></div>`;
+  document.getElementById('wBack').onclick=backWriting;
+  const area=document.getElementById('wArea'),cnt=document.getElementById('wCount');
+  area.oninput=()=>{const n=area.value.trim()?area.value.trim().split(/\s+/).length:0;cnt.textContent=n+' Wörter';};
+  document.getElementById('wShow').onclick=()=>{
+    document.getElementById('wModel').innerHTML=`<div class="eyebrow" style="margin:20px 0 6px">Musterbeispiel</div><div class="model">${w.model}</div>
+    <p class="lead" style="font-size:14px;margin-top:12px">Vergleiche Struktur, Anrede und Konnektoren mit deinem Text. Das ist <span class="serif" style="font-style:italic">ein</span> Beispiel, nicht die einzige Lösung.</p>`;
+    if(!S._wrote){S._wrote=true;} touchDay();
+    document.getElementById('wModel').scrollIntoView({behavior:'smooth',block:'nearest'});
+  };
+}
+function backWriting(){document.getElementById('writingRun').style.display='none';document.getElementById('writingMenu').style.display='block';renderWritingList();}
+
+/* ============================================================
+   EXAM
+   ============================================================ */
+let EX=null,exTimer=null;
+function buildExam(){
+  const g=shuffle(GRAMMAR).slice(0,9).map(q=>({kind:'Grammatik',topic:q.t,p:q.p,g:q.g,o:q.o,a:q.a,ex:q.ex}));
+  const vocabQs=shuffle(VOCAB).slice(0,3).map(v=>{
+    const wrong=shuffle(VOCAB.filter(x=>x.m!==v.m)).slice(0,3).map(x=>x.m);
+    const opts=shuffle([v.m,...wrong]);
+    return {kind:'Wortschatz',topic:'vokabel',p:`Was bedeutet „${v.art?v.art+' ':''}${v.w}"?`,g:'Choose the correct meaning.',o:opts,a:v.m,ex:`${v.art?v.art+' ':''}${v.w} = ${v.m}`};
+  });
+  const r=READINGS[Math.floor(Math.random()*READINGS.length)];
+  const rQs=r.qs.slice(0,3).map(q=>({kind:'Lesen',topic:'lesen',p:q.p,g:'Based on the reading.',o:q.o,a:q.a,ex:'Siehe Text: '+r.title,_ctx:r}));
+  return {reading:r, items:[...g,...vocabQs,...rQs]};
+}
+function startExam(){
+  const ex=buildExam();
+  EX={...ex,idx:0,answers:[],correct:0,timeLeft:720,byArea:{Grammatik:{c:0,t:0},Wortschatz:{c:0,t:0},Lesen:{c:0,t:0}}};
+  document.getElementById('examIntro').style.display='none';
+  document.getElementById('examRun').style.display='block';
+  document.getElementById('timer').classList.add('on');
+  touchDay();
+  exTimer=setInterval(()=>{
+    EX.timeLeft--;
+    const m=Math.floor(EX.timeLeft/60),s=EX.timeLeft%60;
+    const t=document.getElementById('timer');
+    t.textContent=`${m}:${String(s).padStart(2,'0')}`;
+    if(EX.timeLeft<=60)t.classList.add('warn');
+    if(EX.timeLeft<=0)finishExam();
+  },1000);
+  showExamQ();
+}
+function showExamQ(){
+  const run=document.getElementById('examRun');
+  if(EX.idx>=EX.items.length)return finishExam();
+  const item=EX.items[EX.idx];
+  // show reading passage above first Lesen question
+  const isFirstReading = item.kind==='Lesen' && (EX.idx===0 || EX.items[EX.idx-1].kind!=='Lesen');
+  const passage = isFirstReading ? `<div class="card" style="margin-bottom:18px"><div class="reading-title" style="font-size:17px">${EX.reading.title}</div><div class="passage" style="font-size:15.5px;margin-top:8px">${EX.reading.text.split('\n\n').map(p=>`<p>${p}</p>`).join('')}</div></div>` : '';
+  run.innerHTML=passage+questionHTML(item,EX.idx,EX.items.length,{label:item.kind});
+  renderOptions(item,(val)=>{
+    const ok=val===item.a;
+    EX.answers.push({item,val,ok});
+    EX.byArea[item.kind].t++; if(ok)EX.byArea[item.kind].c++;
+    if(item.topic&&TOPICS[item.topic]){S.topics[item.topic].t++;if(ok)S.topics[item.topic].c++;save();}
+    if(ok)EX.correct++;
+    document.querySelectorAll('.opt').forEach(b=>{b.disabled=true;const bv=decodeURIComponent(b.dataset.o);if(bv===item.a)b.classList.add('correct');else if(bv===val&&!ok)b.classList.add('wrong');});
+    document.getElementById('qActions').innerHTML=`<button class="btn btn-primary" id="exNext">${EX.idx>=EX.items.length-1?'Test beenden':'Weiter'} →</button>`;
+    document.getElementById('exNext').onclick=()=>{EX.idx++;showExamQ();};
+  });
+  // exam has no hint button — it's a test
+  document.getElementById('qActions').innerHTML=`<span style="font-size:13px;color:var(--ink-faint)">Prüfungsmodus · keine Tipps</span>`;
+}
+function finishExam(){
+  clearInterval(exTimer);
+  document.getElementById('timer').classList.remove('on','warn');
+  const pct=Math.round(EX.correct/EX.items.length*100);
+  const gained=EX.correct*10; addXp(gained);
+  S.exams.push({date:todayStr(),pct,correct:EX.correct,total:EX.items.length});save();
+  const band = pct>=80?['Sehr gut — B1-Niveau','c-strong']: pct>=60?['Solide — bald B1','c-dev']:['Grundlagen festigen','c-weak'];
+  const areas=Object.entries(EX.byArea).map(([k,v])=>{const p=v.t?Math.round(v.c/v.t*100):0;const st=p>=80?'s-strong':p>=50?'s-dev':'s-weak';
+    return `<div class="wbar"><div class="top"><b>${k}</b><span class="tag">${v.c}/${v.t}</span></div><div class="track ${st}"><i style="width:${p}%"></i></div></div>`;}).join('');
+  const review=EX.answers.filter(a=>!a.ok).map(a=>`
+    <div class="rev-item"><div class="rq">${a.item.p.replace('___','＿＿')}</div>
+      <div class="rev-line"><span>Deine Antwort:</span> <span class="yours bad">${a.val}</span></div>
+      <div class="rev-line"><span>Richtig:</span> <span class="right">${a.item.a}</span></div>
+      <div class="rev-line" style="color:var(--ink-soft)">${a.item.ex}</div></div>`).join('');
+  document.getElementById('examRun').innerHTML=`
+    <div class="eyebrow">Prüfung ausgewertet</div>
+    <div class="result-score">${pct}<span style="font-size:28px">%</span></div>
+    <div class="result-band ${band[1]}" style="background:var(--paper-2)">${band[0]}</div>
+    <p class="lead">${EX.correct} von ${EX.items.length} richtig · +${gained} XP. Deine Themen-Statistik wurde aktualisiert.</p>
+    <div class="card" style="margin:24px 0"><h2 style="margin-bottom:16px;font-size:17px">Ergebnis pro Bereich</h2>${areas}</div>
+    ${review?`<h2 style="margin:8px 0 14px;font-size:18px">Zum Nacharbeiten</h2>${review}`:'<div class="feedback ok"><div class="fh">✓ Perfekt — keine Fehler!</div></div>'}
+    <div class="q-actions" style="margin-top:20px"><button class="btn btn-ochre" id="exAgain">Neuer Test</button><button class="btn btn-ghost" id="exHome">Zur Übersicht</button></div>`;
+  document.getElementById('exAgain').onclick=()=>{document.getElementById('examRun').style.display='none';document.getElementById('examIntro').style.display='block';};
+  document.getElementById('exHome').onclick=()=>{document.getElementById('examRun').style.display='none';document.getElementById('examIntro').style.display='block';switchView('dash');};
+  toast(`Test fertig · ${pct}%`);
+}
+
+/* ============================================================
+   NAV / UTIL
+   ============================================================ */
+function switchView(v){
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('on'));
+  document.getElementById('v-'+v).classList.add('on');
+  document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(v==='dash')renderDash();
+  if(v==='practice'){document.getElementById('practiceRun').style.display='none';document.getElementById('practiceMenu').style.display='block';renderTopicModes();}
+  if(v==='vocab')renderVocab();
+  if(v==='reading'){document.getElementById('readingRun').style.display='none';document.getElementById('readingMenu').style.display='block';renderReadingList();}
+  if(v==='writing'){document.getElementById('writingRun').style.display='none';document.getElementById('writingMenu').style.display='block';renderWritingList();}
+  if(v==='exam'){document.getElementById('examRun').style.display='none';document.getElementById('examIntro').style.display='block';}
+}
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>switchView(b.dataset.v));
+document.getElementById('startExam').onclick=startExam;
+
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+let toastT;
+function toast(msg){const t=document.getElementById('toast');t.innerHTML='<span style="color:var(--ochre)">◆</span> '+msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2600);}
+
+// export / import / reset
+document.getElementById('btnExport').onclick=()=>{
+  const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='deutsch-b1-fortschritt.json';a.click();toast('Fortschritt exportiert');
+};
+document.getElementById('btnImport').onclick=()=>document.getElementById('importFile').click();
+document.getElementById('importFile').onchange=e=>{
+  const f=e.target.files[0];if(!f)return;const rd=new FileReader();
+  rd.onload=()=>{try{const d=JSON.parse(rd.result);if(d.topics){S=d;save();renderStats();switchView('dash');toast('Fortschritt geladen');}}catch(err){toast('Datei nicht lesbar');}};
+  rd.readAsText(f);
+};
+document.getElementById('btnReset').onclick=()=>{
+  if(confirm('Wirklich allen Fortschritt löschen? Das kann nicht rückgängig gemacht werden.')){S=defaultState();save();renderStats();switchView('dash');toast('Zurückgesetzt');}
+};
+
+// keyboard: A-D to answer
+document.addEventListener('keydown',e=>{
+  const opts=document.querySelectorAll('#opts .opt:not(:disabled)');
+  const map={a:0,b:1,c:2,d:3};
+  if(opts.length&&map[e.key.toLowerCase()]!==undefined)opts[map[e.key.toLowerCase()]]?.click();
+});
+
+/* init */
+renderStats();
+renderDash();
+</script>
+</body>
+</html>
